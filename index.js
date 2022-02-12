@@ -3,6 +3,7 @@ const app = express()
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const multer = require('multer')
+const authRoute = require('./routes/auth')
 
 dotenv.config()
 
@@ -12,6 +13,8 @@ mongoose
   .catch((err) => {
     console.log(err)
   })
+app.use(express.json())
+app.use('/api/auth', authRoute)
 
 app.get('/', (req, res) => {
   return res.status(200).json({ msg: 'Welcome to homepage' })
