@@ -3,6 +3,25 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.2",
     "mongoose": "^6.2.1",
-    "multer": "^1.4.4"
-  }
+    "multer": "^1.4.4",
+    "nodemon": "^2.0.15"
+  },
+  "name": "react-blog-api",
+  "description": "# This is the API for react-blog site.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phantware/react-blog-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phantware/react-blog-api/issues"
+  },
+  "homepage": "https://github.com/phantware/react-blog-api#readme"
 }
