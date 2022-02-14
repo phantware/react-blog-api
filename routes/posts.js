@@ -40,7 +40,7 @@ router.put('/:id', async (req, res) => {
   }
 })
 
-// Delete Update
+// Delete Post
 
 router.delete('/:id', async (req, res) => {
   try {
@@ -55,6 +55,17 @@ router.delete('/:id', async (req, res) => {
     } else {
       return res.status(401).json('You can delete only your post')
     }
+  } catch (error) {
+    return res.status(500).json(error)
+  }
+})
+
+//Get Post
+
+router.get('/:id', async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id)
+    return res.status(200).json(post)
   } catch (error) {
     return res.status(500).json(error)
   }
