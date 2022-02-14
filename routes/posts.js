@@ -10,7 +10,8 @@ router.post('/', async (req, res) => {
     const savedPost = await newPost.save()
     return res.status(200).json(savedPost)
   } catch (error) {
-    return res.status(500).json(error)
+    console.log(error)
+    return res.status(500).json({ msg: error })
   }
 })
 
@@ -60,12 +61,36 @@ router.delete('/:id', async (req, res) => {
   }
 })
 
-//Get Post
+//Get a Single Post
 
 router.get('/:id', async (req, res) => {
   try {
     const post = await Post.findById(req.params.id)
     return res.status(200).json(post)
+  } catch (error) {
+    return res.status(500).json(error)
+  }
+})
+
+//Get all Post
+
+router.get('/', async (req, res) => {
+  const username = req.query.user
+  const catName = req.query.cat
+  try {
+    let posts
+    if (username) {
+      posts = await Post.find({ username })
+    } else if (catName) {
+      posts = Post.find({
+        categories: {
+          $in: [catName],
+        },
+      })
+    } else {
+      posts = await Post.find()
+    }
+    return res.status(200).json(posts)
   } catch (error) {
     return res.status(500).json(error)
   }
