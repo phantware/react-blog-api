@@ -16,6 +16,21 @@ mongoose
   .catch((err) => {
     console.log(err)
   })
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'images')
+  },
+  filename: (req, file, cb) => {
+    cb(null, 'jman001.jpeg')
+  },
+})
+
+const upload = multer({ storage: storage })
+app.post('/api/upload', upload.single('file'), (req, res) => {
+  return res.status(200).json('File has ben uploaded')
+})
+
 app.use(express.json())
 app.use('/api/auth', authRoute)
 app.use('/api/users', userRoute)
