@@ -8,8 +8,10 @@ const userRoute = require('./routes/users')
 const postRoute = require('./routes/posts')
 const categoryRoute = require('./routes/categories')
 const path = require('path')
+const cors = require('cors')
 
 dotenv.config()
+app.use(cors())
 app.use(express.json())
 app.use('/images', express.static(path.join(__dirname, '/images')))
 
